@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="embeddedPhoto" rowHeight="250" id="KGk-i7-Jjw" customClass="EmbeddedPhotoTableViewCell" customModule="PetRescue" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="435" height="250"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="435" height="249.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oo8-z7-b6l">
+                        <rect key="frame" x="0.0" y="0.0" width="435" height="250.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caJ-oV-C6c">
+                                <rect key="frame" x="0.0" y="0.0" width="435" height="250.5"/>
+                                <color key="backgroundColor" red="0.051368452609999997" green="0.030822500589999999" blue="0.055533684790000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="caJ-oV-C6c" firstAttribute="leading" secondItem="Oo8-z7-b6l" secondAttribute="leading" id="NaA-1I-TmU"/>
+                            <constraint firstItem="caJ-oV-C6c" firstAttribute="top" secondItem="Oo8-z7-b6l" secondAttribute="top" id="d4b-lG-FVZ"/>
+                            <constraint firstAttribute="bottom" secondItem="caJ-oV-C6c" secondAttribute="bottom" id="dH5-Lh-VpV"/>
+                            <constraint firstAttribute="height" constant="250" id="hJq-70-Vqe"/>
+                            <constraint firstAttribute="trailing" secondItem="caJ-oV-C6c" secondAttribute="trailing" id="tJj-7T-Hul"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Oo8-z7-b6l" secondAttribute="bottom" id="Fbw-Il-ZxZ"/>
+                    <constraint firstItem="Oo8-z7-b6l" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YjY-Rd-9jV"/>
+                    <constraint firstAttribute="trailing" secondItem="Oo8-z7-b6l" secondAttribute="trailing" id="p87-BF-p8L"/>
+                    <constraint firstItem="Oo8-z7-b6l" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tOi-Ti-ddC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="229.59999999999999" y="197.00149925037482"/>
+        </tableViewCell>
+    </objects>
+</document>

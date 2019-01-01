@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB37485821DB5D62005055A5 /* EmbeddedPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37485621DB5D62005055A5 /* EmbeddedPhotoTableViewCell.swift */; };
+		EB37485921DB5D62005055A5 /* EmbeddedPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB37485721DB5D62005055A5 /* EmbeddedPhotoTableViewCell.xib */; };
+		EB37485C21DB5D7E005055A5 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37485A21DB5D7E005055A5 /* TextTableViewCell.swift */; };
+		EB37485D21DB5D7E005055A5 /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB37485B21DB5D7E005055A5 /* TextTableViewCell.xib */; };
+		EB37486221DB5DA6005055A5 /* YesNoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37486021DB5DA6005055A5 /* YesNoTableViewCell.swift */; };
+		EB37486321DB5DA6005055A5 /* YesNoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB37486121DB5DA6005055A5 /* YesNoTableViewCell.xib */; };
+		EB37486621DB5DC2005055A5 /* FormattedNumericTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37486421DB5DC2005055A5 /* FormattedNumericTableViewCell.swift */; };
+		EB37486721DB5DC2005055A5 /* FormattedNumericTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB37486521DB5DC2005055A5 /* FormattedNumericTableViewCell.xib */; };
+		EB37486A21DB5DDD005055A5 /* DateTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37486821DB5DDD005055A5 /* DateTimeTableViewCell.swift */; };
+		EB37486B21DB5DDD005055A5 /* DateTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB37486921DB5DDD005055A5 /* DateTimeTableViewCell.xib */; };
 		EB6FEAAD21D9FC670086351E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6FEAAC21D9FC670086351E /* AppDelegate.swift */; };
 		EB6FEAAF21D9FC670086351E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6FEAAE21D9FC670086351E /* ViewController.swift */; };
 		EB6FEAB221D9FC670086351E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB6FEAB021D9FC670086351E /* Main.storyboard */; };
@@ -18,6 +28,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB37485621DB5D62005055A5 /* EmbeddedPhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedPhotoTableViewCell.swift; sourceTree = "<group>"; };
+		EB37485721DB5D62005055A5 /* EmbeddedPhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmbeddedPhotoTableViewCell.xib; sourceTree = "<group>"; };
+		EB37485A21DB5D7E005055A5 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
+		EB37485B21DB5D7E005055A5 /* TextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextTableViewCell.xib; sourceTree = "<group>"; };
+		EB37486021DB5DA6005055A5 /* YesNoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesNoTableViewCell.swift; sourceTree = "<group>"; };
+		EB37486121DB5DA6005055A5 /* YesNoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YesNoTableViewCell.xib; sourceTree = "<group>"; };
+		EB37486421DB5DC2005055A5 /* FormattedNumericTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedNumericTableViewCell.swift; sourceTree = "<group>"; };
+		EB37486521DB5DC2005055A5 /* FormattedNumericTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormattedNumericTableViewCell.xib; sourceTree = "<group>"; };
+		EB37486821DB5DDD005055A5 /* DateTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeTableViewCell.swift; sourceTree = "<group>"; };
+		EB37486921DB5DDD005055A5 /* DateTimeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateTimeTableViewCell.xib; sourceTree = "<group>"; };
 		EB6FEAA921D9FC670086351E /* PetRescue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetRescue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6FEAAC21D9FC670086351E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB6FEAAE21D9FC670086351E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +61,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB37486C21DB5DE6005055A5 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EB37485621DB5D62005055A5 /* EmbeddedPhotoTableViewCell.swift */,
+				EB37485721DB5D62005055A5 /* EmbeddedPhotoTableViewCell.xib */,
+				EB37485A21DB5D7E005055A5 /* TextTableViewCell.swift */,
+				EB37485B21DB5D7E005055A5 /* TextTableViewCell.xib */,
+				EB37486021DB5DA6005055A5 /* YesNoTableViewCell.swift */,
+				EB37486121DB5DA6005055A5 /* YesNoTableViewCell.xib */,
+				EB37486421DB5DC2005055A5 /* FormattedNumericTableViewCell.swift */,
+				EB37486521DB5DC2005055A5 /* FormattedNumericTableViewCell.xib */,
+				EB37486821DB5DDD005055A5 /* DateTimeTableViewCell.swift */,
+				EB37486921DB5DDD005055A5 /* DateTimeTableViewCell.xib */,
+			);
+			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
 		EB6FEAA021D9FC670086351E = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +103,7 @@
 				EB6FEACA21DA32630086351E /* AdoptionFormPageViewController.swift */,
 				EB6FEAC821DA32290086351E /* AdoptionFormViewController.swift */,
 				EB6FEAB021D9FC670086351E /* Main.storyboard */,
+				EB37486C21DB5DE6005055A5 /* Custom Cells */,
 				EB6FEAB321D9FC6A0086351E /* Assets.xcassets */,
 				EB6FEAB521D9FC6A0086351E /* LaunchScreen.storyboard */,
 				EB6FEAB821D9FC6A0086351E /* Info.plist */,
@@ -131,8 +169,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB37486321DB5DA6005055A5 /* YesNoTableViewCell.xib in Resources */,
+				EB37486721DB5DC2005055A5 /* FormattedNumericTableViewCell.xib in Resources */,
+				EB37486B21DB5DDD005055A5 /* DateTimeTableViewCell.xib in Resources */,
 				EB6FEAB721D9FC6A0086351E /* LaunchScreen.storyboard in Resources */,
+				EB37485D21DB5D7E005055A5 /* TextTableViewCell.xib in Resources */,
 				EB6FEAB421D9FC6A0086351E /* Assets.xcassets in Resources */,
+				EB37485921DB5D62005055A5 /* EmbeddedPhotoTableViewCell.xib in Resources */,
 				EB6FEAB221D9FC670086351E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,9 +188,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB6FEAC921DA32290086351E /* AdoptionFormViewController.swift in Sources */,
+				EB37485C21DB5D7E005055A5 /* TextTableViewCell.swift in Sources */,
 				EB6FEACB21DA32630086351E /* AdoptionFormPageViewController.swift in Sources */,
+				EB37486621DB5DC2005055A5 /* FormattedNumericTableViewCell.swift in Sources */,
+				EB37486A21DB5DDD005055A5 /* DateTimeTableViewCell.swift in Sources */,
 				EB6FEAAF21D9FC670086351E /* ViewController.swift in Sources */,
+				EB37486221DB5DA6005055A5 /* YesNoTableViewCell.swift in Sources */,
 				EB6FEAAD21D9FC670086351E /* AppDelegate.swift in Sources */,
+				EB37485821DB5D62005055A5 /* EmbeddedPhotoTableViewCell.swift in Sources */,
 				EB6FEAC721DA32090086351E /* AdoptionFormRootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

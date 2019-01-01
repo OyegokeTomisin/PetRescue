@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="formattednumeric" rowHeight="90" id="KGk-i7-Jjw" customClass="FormattedNumericTableViewCell" customModule="PetRescue" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDT-CI-jAJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="90.5"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ed3-l4-0Sc">
+                                <rect key="frame" x="18" y="37.5" width="284" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="PmC-Ud-BhW"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORV-M7-XLP">
+                                <rect key="frame" x="18" y="8.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ed3-l4-0Sc" firstAttribute="leading" secondItem="zDT-CI-jAJ" secondAttribute="leading" constant="18" id="ZwN-Pq-0K9"/>
+                            <constraint firstItem="Ed3-l4-0Sc" firstAttribute="top" secondItem="ORV-M7-XLP" secondAttribute="bottom" constant="8" id="nVQ-Cq-q4p"/>
+                            <constraint firstAttribute="trailing" secondItem="Ed3-l4-0Sc" secondAttribute="trailing" constant="18" id="uad-9C-3RM"/>
+                            <constraint firstItem="ORV-M7-XLP" firstAttribute="leading" secondItem="zDT-CI-jAJ" secondAttribute="leading" constant="18" id="ucf-5s-k2J"/>
+                            <constraint firstAttribute="height" constant="90" id="vhz-gs-FfI"/>
+                            <constraint firstItem="ORV-M7-XLP" firstAttribute="top" secondItem="zDT-CI-jAJ" secondAttribute="top" constant="8" id="yjY-Pk-Z0k"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="zDT-CI-jAJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="C9F-sB-9gR"/>
+                    <constraint firstAttribute="trailing" secondItem="zDT-CI-jAJ" secondAttribute="trailing" id="CWf-Iq-04h"/>
+                    <constraint firstAttribute="bottom" secondItem="zDT-CI-jAJ" secondAttribute="bottom" id="EgC-Cj-aLr"/>
+                    <constraint firstItem="zDT-CI-jAJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="IhJ-tQ-BeK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="137.59999999999999" y="141.22938530734635"/>
+        </tableViewCell>
+    </objects>
+</document>
