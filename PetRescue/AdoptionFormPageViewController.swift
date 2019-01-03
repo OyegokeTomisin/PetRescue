@@ -13,7 +13,7 @@ protocol AdoptionFormPageViewControllerDelegate: class {
     var numberOfPages: Int { get set }
 }
 
-class AdoptionFormPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class AdoptionFormPageViewController: UIPageViewController, UIPageViewControllerDelegate {
 
     weak var formDelegate: AdoptionFormPageViewControllerDelegate?
     var currentIndex = 0
@@ -21,8 +21,7 @@ class AdoptionFormPageViewController: UIPageViewController, UIPageViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dataSource = self
+    
         delegate = self
         
         formDelegate?.numberOfPages = pagesCount ?? 0
