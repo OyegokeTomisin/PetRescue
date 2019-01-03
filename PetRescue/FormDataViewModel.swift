@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 enum FormItemViewModelType {
     case embeddedPhoto
@@ -46,6 +47,7 @@ class FormDataViewModel: NSObject {
             for element in section["elements"].arrayValue{
                 if element["type"] == "embeddedphoto"{
                     let emb = EmbeddedPhotoCellItem()
+                    emb.element = element
                     Items.append(emb)
                 }
                 if element["type"] == "text"{
@@ -89,9 +91,10 @@ extension FormDataViewModel: UITableViewDataSource{
         
         switch formCell.type {
         case .embeddedPhoto:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "embeddedPhoto") as! EmbeddedPhotoTableViewCell
-            
-            return cell
+            if let embeddedPhoto = formCell as? EmbeddedPhotoCellItem, let cell = tableView.dequeueReusableCell(withIdentifier: "embeddedPhoto") as? EmbeddedPhotoTableViewCell{
+                cell.configureCell(with: embeddedPhoto.element)
+                return cell
+            }
         case .text:
             let cell = tableView.dequeueReusableCell(withIdentifier: "text") as! TextTableViewCell
             
@@ -109,6 +112,7 @@ extension FormDataViewModel: UITableViewDataSource{
             
             return cell
         }
+        return UITableViewCell()
     }
 }
 
@@ -131,6 +135,7 @@ class DateTimeCellItem:FormViewModelItem{
 }
 
 class EmbeddedPhotoCellItem:FormViewModelItem{
+    var element: JSON?
     var type: FormItemViewModelType{
         return .embeddedPhoto
     }

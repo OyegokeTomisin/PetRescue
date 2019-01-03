@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oo8-z7-b6l">
                         <rect key="frame" x="0.0" y="0.0" width="435" height="250.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caJ-oV-C6c">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caJ-oV-C6c">
                                 <rect key="frame" x="0.0" y="0.0" width="435" height="250.5"/>
                                 <color key="backgroundColor" red="0.051368452609999997" green="0.030822500589999999" blue="0.055533684790000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
@@ -45,6 +45,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="photo" destination="caJ-oV-C6c" id="Xbk-vl-De9"/>
+            </connections>
             <point key="canvasLocation" x="229.59999999999999" y="197.00149925037482"/>
         </tableViewCell>
     </objects>
