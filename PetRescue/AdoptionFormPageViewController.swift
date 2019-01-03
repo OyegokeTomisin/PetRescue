@@ -17,7 +17,7 @@ class AdoptionFormPageViewController: UIPageViewController, UIPageViewController
 
     weak var formDelegate: AdoptionFormPageViewControllerDelegate?
     var currentIndex = 0
-    var pages = [1,2,3]
+    var pagesCount: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,14 @@ class AdoptionFormPageViewController: UIPageViewController, UIPageViewController
         dataSource = self
         delegate = self
         
-        formDelegate?.numberOfPages = pages.count
+        formDelegate?.numberOfPages = pagesCount ?? 0
+        
+        guard let formData = parseJsonData() else { return }
+        let form = FormData(json: formData)
+        if let number_of_pages = form.pages.array{
+            pagesCount = number_of_pages.count
+            formDelegate?.numberOfPages = pagesCount ?? 0
+        }
         
         if let startingViewController = contentViewController(at: 0) {
             setViewControllers([startingViewController], direction: .forward, animated: true, completion: nil)
@@ -46,7 +53,7 @@ class AdoptionFormPageViewController: UIPageViewController, UIPageViewController
     }
     
     func contentViewController(at index: Int) -> AdoptionFormViewController? {
-        if index < 0 || index >= pages.count {
+        if index < 0 || index >= pagesCount ?? 0 {
             return nil
         }
         
@@ -60,6 +67,12 @@ class AdoptionFormPageViewController: UIPageViewController, UIPageViewController
     }
     
     //Add skip to next page function
+    func nextPage() {
+        currentIndex += 1
+        if let nextViewController = contentViewController(at: currentIndex) {
+            setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
+        }
+    }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {

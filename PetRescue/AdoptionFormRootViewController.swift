@@ -11,6 +11,7 @@ import UIKit
 class AdoptionFormRootViewController: UIViewController, AdoptionFormPageViewControllerDelegate {
 
     @IBOutlet weak var formPageControl: UIPageControl!
+    @IBOutlet weak var nextButton: UIButton!
     
     var formPageViewController: AdoptionFormPageViewController?
     var numberOfPages: Int = 0 {
@@ -23,9 +24,31 @@ class AdoptionFormRootViewController: UIViewController, AdoptionFormPageViewCont
         super.viewDidLoad()
     }
     
+    @IBAction func nextButtonTapped(_ sender: Any) {
+        if let index = formPageViewController?.currentIndex {
+            switch index {
+            case 0...((numberOfPages - 1) - index) :
+                formPageViewController?.nextPage()
+            default:
+                submitForm()
+            }
+        }
+        updateUI()
+    }
+    
+    func submitForm(){
+        print("Submitting form")
+    }
+    
     func updateUI() {
         if let index = formPageViewController?.currentIndex {
             formPageControl.currentPage = index
+            switch index {
+            case 0...((numberOfPages) - index) :
+                nextButton.setTitle("Next", for: .normal)
+            default:
+                nextButton.setTitle("Submit", for: .normal)
+            }
         }
     }
     
