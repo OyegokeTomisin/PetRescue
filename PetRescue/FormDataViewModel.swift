@@ -23,54 +23,71 @@ protocol FormViewModelItem {
 
 class FormDataViewModel: NSObject {
     
-    var formItems = [FormViewModelItem]()
-    var sectionCount: Int = 1
+    var formItems = [[FormViewModelItem]]()
+    var sectionTitles = [String?]()
+    var pageIndex: Int = 0 {
+        didSet{
+            loadTableData()
+        }
+    }
     
     override init() {
         super.init()
+    }
+    
+    func loadTableData(){
         guard let formData = parseJsonData() else { return }
         
         let form = FormData(json: formData)
-        let sections = form.pages[0]["sections"].arrayValue
+        let sections = form.pages[pageIndex]["sections"].arrayValue
         for section in sections{
-            sectionCount = sections.count
-            //print(sectionCount)
+            sectionTitles.append(section["label"].string)
+            var Items = [FormViewModelItem]()
             for element in section["elements"].arrayValue{
                 if element["type"] == "embeddedphoto"{
                     let emb = EmbeddedPhotoCellItem()
-                    formItems.append(emb)
+                    Items.append(emb)
                 }
                 if element["type"] == "text"{
                     let t = TextCellItem()
-                    formItems.append(t)
+                    Items.append(t)
                 }
                 if element["type"] == "yesno"{
                     let y = YesNoCellItem()
-                    formItems.append(y)
+                    Items.append(y)
                 }
                 if element["type"] == "formattednumeric"{
                     let f = FormattedNumericCellItem()
-                    formItems.append(f)
+                    Items.append(f)
                 }
                 if element["type"] == "datetime"{
                     let d = DateTimeCellItem()
-                    formItems.append(d)
+                    Items.append(d)
                 }
             }
-            print(formItems)
+            formItems.append(Items)
+            Items = [FormViewModelItem]()
         }
     }
 }
 
 extension FormDataViewModel: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return formItems[section].count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return formItems.count
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitles[section]
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = formItems[indexPath.row]
-        switch item.type {
-            
+        let formCell = formItems[indexPath.section][indexPath.row]
+        
+        switch formCell.type {
         case .embeddedPhoto:
             let cell = tableView.dequeueReusableCell(withIdentifier: "embeddedPhoto") as! EmbeddedPhotoTableViewCell
             

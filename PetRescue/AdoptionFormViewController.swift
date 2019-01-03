@@ -12,9 +12,14 @@ class AdoptionFormViewController: UIViewController {
     
     @IBOutlet weak var adoptionFormTable: UITableView!
     
-    var index = 0
+    var index = 0{
+        didSet{
+            viewModel.pageIndex = index
+            adoptionFormTable?.reloadData()
+        }
+    }
     fileprivate let viewModel = FormDataViewModel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureFormTable()
