@@ -29,6 +29,7 @@ class AdoptionFormViewController: UIViewController {
         
         //adoptionFormTable.delegate = self
         adoptionFormTable.dataSource = viewModel
+        adoptionFormTable.tableFooterView = UIView()
         
         adoptionFormTable.register(UINib(nibName: "TextTableViewCell", bundle: nil), forCellReuseIdentifier: "text")
         adoptionFormTable.register(UINib(nibName: "EmbeddedPhotoTableViewCell", bundle: nil), forCellReuseIdentifier: "embeddedPhoto")
