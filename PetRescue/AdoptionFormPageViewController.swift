@@ -73,6 +73,12 @@ class AdoptionFormPageViewController: UIPageViewController, UIPageViewController
             setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
         }
     }
+    func previousPage() {
+        currentIndex -= 1
+        if let nextViewController = contentViewController(at: currentIndex) {
+            setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
+        }
+    }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {

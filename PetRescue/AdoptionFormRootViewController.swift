@@ -13,6 +13,7 @@ class AdoptionFormRootViewController: UIViewController, AdoptionFormPageViewCont
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var formPageControl: UIPageControl!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     var formPageViewController: AdoptionFormPageViewController?
     var numberOfPages: Int = 0 {
@@ -28,6 +29,7 @@ class AdoptionFormRootViewController: UIViewController, AdoptionFormPageViewCont
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        backButton.isHidden = true
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
@@ -42,6 +44,18 @@ class AdoptionFormRootViewController: UIViewController, AdoptionFormPageViewCont
         updateUI()
     }
     
+    @IBAction func backButtonTapped(_ sender: Any) {
+        if let index = formPageViewController?.currentIndex {
+            switch index {
+            case 1...((numberOfPages - 1)) :
+                formPageViewController?.previousPage()
+            default:
+                break
+            }
+        }
+        updateUI()
+    }
+    
     func submitForm(){
         //Form Validation
     }
@@ -50,9 +64,14 @@ class AdoptionFormRootViewController: UIViewController, AdoptionFormPageViewCont
         if let index = formPageViewController?.currentIndex {
             formPageControl.currentPage = index
             switch index {
-            case 0...((numberOfPages) - index) :
+            case 0:
+                backButton.isHidden = true
+                nextButton.setTitle("NEXT", for: .normal)
+            case 1...((numberOfPages) - index) :
+                backButton.isHidden = false
                 nextButton.setTitle("NEXT", for: .normal)
             default:
+                backButton.isHidden = false
                 nextButton.setTitle("SUBMIT", for: .normal)
             }
         }

@@ -33,3 +33,19 @@ class FormData {
     }
     
 }
+
+/*struct Rule {
+    let condition: String?
+    let value: String?
+    let action: String?
+    let otherwise: String?
+    let targets: [String]?
+    
+    init(json: JSON) {
+        self.condition = json["condition"].string
+        self.value = json["value"].string
+        self.action = json["action"].string
+        self.otherwise = json["otherwise"].string
+        self.targets = json["targets"].arrayObject as? [String]
+    }
+}*/

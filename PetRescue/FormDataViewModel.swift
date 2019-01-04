@@ -25,11 +25,7 @@ protocol FormViewModelItem {
 class FormDataViewModel: NSObject {
     var formItems = [[FormViewModelItem]]()
     var sectionTitles = [String?]()
-    var pageIndex: Int = 0 {
-        didSet{
-            loadTableData()
-        }
-    }
+    var pageIndex: Int = 0 { didSet { loadTableData() } }
     
     override init() {
         super.init()
@@ -37,7 +33,6 @@ class FormDataViewModel: NSObject {
     
     func loadTableData(){
         guard let formData = parseFileData() else { return }
-        
         let form = FormData(json: formData)
         let sections = form.pages[pageIndex]["sections"].arrayValue
         for section in sections{

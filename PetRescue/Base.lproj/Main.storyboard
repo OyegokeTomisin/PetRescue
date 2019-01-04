@@ -50,6 +50,19 @@
                         <viewLayoutGuide key="safeArea" id="ylM-2z-xvB"/>
                     </view>
                     <navigationItem key="navigationItem" id="c6A-xx-AOy">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="dnc-Em-iUJ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NdP-X1-hwi">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <state key="normal" title="BACK">
+                                    <color key="titleColor" red="0.90588235289999997" green="0.28627450980000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="eqe-zO-MFC" eventType="touchUpInside" id="rb8-d2-4SK"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="tO7-mx-HDo">
                             <view key="customView" contentMode="scaleToFill" id="Fdy-bn-Oxd">
                                 <rect key="frame" x="276" y="5.5" width="83" height="33"/>
@@ -77,6 +90,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="NdP-X1-hwi" id="pNm-vH-Con"/>
                         <outlet property="formPageControl" destination="3JT-2u-Qhy" id="MPO-Wb-Ffh"/>
                         <outlet property="navigationBar" destination="c6A-xx-AOy" id="34t-EH-XtX"/>
                         <outlet property="nextButton" destination="hqU-AO-Pf1" id="y64-WQ-u67"/>
