@@ -23,13 +23,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="90.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6n-Rv-YNC">
-                                <rect key="frame" x="18" y="8.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="18" y="8.5" width="45" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fh9-Ys-e9b">
-                                <rect key="frame" x="18" y="37.5" width="284" height="40"/>
+                                <rect key="frame" x="18" y="38" width="284" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="edl-Xv-o6j"/>
                                 </constraints>
@@ -38,7 +38,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.91372549020000005" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="90" id="FPw-jm-zw7"/>
                             <constraint firstAttribute="trailing" secondItem="fh9-Ys-e9b" secondAttribute="trailing" constant="18" id="HSF-d0-lID"/>
@@ -57,6 +57,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="textCellLabel" destination="B6n-Rv-YNC" id="SnL-iO-80X"/>
+                <outlet property="textField" destination="fh9-Ys-e9b" id="OlA-Wx-gaG"/>
+            </connections>
             <point key="canvasLocation" x="137.59999999999999" y="133.5832083958021"/>
         </tableViewCell>
     </objects>

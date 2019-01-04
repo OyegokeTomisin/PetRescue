@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class YesNoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var yesNoLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +21,11 @@ class YesNoTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configureCell(with element: JSON?){
+        guard let element = element else { return }
+        yesNoLabel.text = element["label"].string
     }
     
 }

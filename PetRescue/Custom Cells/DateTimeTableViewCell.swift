@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class DateTimeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet weak var selectedDateLabel: UILabel!
+    
+    var dateOfBirth: String?{
+        didSet{
+            selectedDateLabel.text = dateOfBirth
+            selectedDateLabel.isHidden = false
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        selectedDateLabel.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -21,4 +33,15 @@ class DateTimeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configureCell(with element: JSON?){
+        guard let element = element else { return }
+        dateTimeLabel.text = element["label"].string
+    }
+    
+    @IBAction func selectDateAction(_ sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let selectedDate = formatter.string(from: sender.date)
+        dateOfBirth = selectedDate
+    }
 }

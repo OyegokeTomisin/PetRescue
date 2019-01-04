@@ -9,7 +9,8 @@
 import UIKit
 
 class AdoptionFormRootViewController: UIViewController, AdoptionFormPageViewControllerDelegate {
-
+    
+    @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var formPageControl: UIPageControl!
     @IBOutlet weak var nextButton: UIButton!
     
@@ -20,6 +21,11 @@ class AdoptionFormRootViewController: UIViewController, AdoptionFormPageViewCont
         }
     }
     
+    var pageTitle: String = "" {
+        didSet{
+            navigationBar.title = pageTitle
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -37,7 +43,7 @@ class AdoptionFormRootViewController: UIViewController, AdoptionFormPageViewCont
     }
     
     func submitForm(){
-        print("Submitting form")
+        //Form Validation
     }
     
     func updateUI() {
@@ -45,9 +51,9 @@ class AdoptionFormRootViewController: UIViewController, AdoptionFormPageViewCont
             formPageControl.currentPage = index
             switch index {
             case 0...((numberOfPages) - index) :
-                nextButton.setTitle("Next", for: .normal)
+                nextButton.setTitle("NEXT", for: .normal)
             default:
-                nextButton.setTitle("Submit", for: .normal)
+                nextButton.setTitle("SUBMIT", for: .normal)
             }
         }
     }

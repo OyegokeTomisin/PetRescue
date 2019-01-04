@@ -11,9 +11,10 @@ import UIKit
 protocol AdoptionFormPageViewControllerDelegate: class {
     func didUpdatePageIndex(currentIndex: Int)
     var numberOfPages: Int { get set }
+    var pageTitle: String { get set }
 }
 
-class AdoptionFormPageViewController: UIPageViewController, UIPageViewControllerDelegate {
+class AdoptionFormPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
     weak var formDelegate: AdoptionFormPageViewControllerDelegate?
     var currentIndex = 0
@@ -23,6 +24,7 @@ class AdoptionFormPageViewController: UIPageViewController, UIPageViewController
         super.viewDidLoad()
     
         delegate = self
+        //dataSource = self
         
         formDelegate?.numberOfPages = pagesCount ?? 0
         
@@ -31,6 +33,7 @@ class AdoptionFormPageViewController: UIPageViewController, UIPageViewController
         if let number_of_pages = form.pages.array{
             pagesCount = number_of_pages.count
             formDelegate?.numberOfPages = pagesCount ?? 0
+            formDelegate?.pageTitle = form.pageTitle ?? "Adoption Form"
         }
         
         if let startingViewController = contentViewController(at: 0) {

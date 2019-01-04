@@ -22,11 +22,13 @@ public func parseJsonData() -> JSON? {
 class FormData {
     let id: String?
     let name: String?
+    let pageTitle: String?
     let pages: JSON
     
     init(json: JSON) {
         self.id = json["id"].string
         self.name = json["name"].string
+        self.pageTitle = json["name"].string
         self.pages = json["pages"]
     }
     

@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class FormattedNumericTableViewCell: UITableViewCell {
+class FormattedNumericTableViewCell: UITableViewCell, UITextFieldDelegate {
 
+    @IBOutlet weak var formattedNumericLabel: UILabel!
+    @IBOutlet weak var numericTextField: UITextField!
+    
+    var label: String? { didSet{ formattedNumericLabel.text = label }}
+    var formattedNumeric: String?
+    var isMandatory: Bool?
+    var unique_id:String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        numericTextField.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -20,5 +30,12 @@ class FormattedNumericTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
+    func configureCell(with element: JSON?){
+        guard let element = element else { return }
+        label = element["label"].string
+        formattedNumeric = element["formattedNumeric"].string
+        isMandatory = element["isMandatory"].bool
+        unique_id = element["unique_id"].string
+    }
 }

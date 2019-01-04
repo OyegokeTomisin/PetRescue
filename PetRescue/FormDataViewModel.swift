@@ -23,7 +23,6 @@ protocol FormViewModelItem {
 }
 
 class FormDataViewModel: NSObject {
-    
     var formItems = [[FormViewModelItem]]()
     var sectionTitles = [String?]()
     var pageIndex: Int = 0 {
@@ -46,25 +45,29 @@ class FormDataViewModel: NSObject {
             var Items = [FormViewModelItem]()
             for element in section["elements"].arrayValue{
                 if element["type"] == "embeddedphoto"{
-                    let emb = EmbeddedPhotoCellItem()
-                    emb.element = element
-                    Items.append(emb)
+                    let cellItem = EmbeddedPhotoCellItem()
+                    cellItem.element = element
+                    Items.append(cellItem)
                 }
                 if element["type"] == "text"{
-                    let t = TextCellItem()
-                    Items.append(t)
+                    let cellItem = TextCellItem()
+                    cellItem.element = element
+                    Items.append(cellItem)
                 }
                 if element["type"] == "yesno"{
-                    let y = YesNoCellItem()
-                    Items.append(y)
+                    let cellItem = YesNoCellItem()
+                    cellItem.element = element
+                    Items.append(cellItem)
                 }
                 if element["type"] == "formattednumeric"{
-                    let f = FormattedNumericCellItem()
-                    Items.append(f)
+                    let cellItem = FormattedNumericCellItem()
+                    cellItem.element = element
+                    Items.append(cellItem)
                 }
                 if element["type"] == "datetime"{
-                    let d = DateTimeCellItem()
-                    Items.append(d)
+                    let cellItem = DateTimeCellItem()
+                    cellItem.element = element
+                    Items.append(cellItem)
                 }
             }
             formItems.append(Items)
@@ -96,39 +99,46 @@ extension FormDataViewModel: UITableViewDataSource{
                 return cell
             }
         case .text:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "text") as! TextTableViewCell
-            
-            return cell
-        case .datetime:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "datetime") as! DateTimeTableViewCell
-            
-            return cell
+            if let text = formCell as? TextCellItem, let cell = tableView.dequeueReusableCell(withIdentifier: "text") as? TextTableViewCell{
+                cell.configureCell(with: text.element)
+                return cell
+            }
         case .formattednumeric:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "formattednumeric") as! FormattedNumericTableViewCell
-            
-            return cell
+            if let formattedNumeric = formCell as? FormattedNumericCellItem, let cell = tableView.dequeueReusableCell(withIdentifier: "formattednumeric") as? FormattedNumericTableViewCell{
+                cell.configureCell(with: formattedNumeric.element)
+                return cell
+            }
         case .yesno:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "yesno") as! YesNoTableViewCell
-            
-            return cell
+            if let yesno = formCell as? YesNoCellItem, let cell = tableView.dequeueReusableCell(withIdentifier: "yesno") as? YesNoTableViewCell{
+                cell.configureCell(with: yesno.element)
+                return cell
+            }
+        case .datetime:
+            if let dateTime = formCell as? DateTimeCellItem, let cell = tableView.dequeueReusableCell(withIdentifier: "datetime") as? DateTimeTableViewCell{
+                cell.configureCell(with: dateTime.element)
+                return cell
+            }
         }
         return UITableViewCell()
     }
 }
 
 class TextCellItem:FormViewModelItem{
+    var element: JSON?
     var type: FormItemViewModelType{
         return .text
     }
 }
 
 class FormattedNumericCellItem:FormViewModelItem{
+    var element: JSON?
     var type: FormItemViewModelType{
         return .formattednumeric
     }
 }
 
 class DateTimeCellItem:FormViewModelItem{
+    var element: JSON?
     var type: FormItemViewModelType{
         return .datetime
     }
@@ -142,6 +152,7 @@ class EmbeddedPhotoCellItem:FormViewModelItem{
 }
 
 class YesNoCellItem:FormViewModelItem{
+    var element: JSON?
     var type: FormItemViewModelType{
         return .yesno
     }

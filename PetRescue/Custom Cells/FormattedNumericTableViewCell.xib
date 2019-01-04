@@ -29,16 +29,16 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" enablesReturnKeyAutomatically="YES" textContentType="tel"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORV-M7-XLP">
-                                <rect key="frame" x="18" y="8.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="18" y="8.5" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.91372549020000005" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Ed3-l4-0Sc" firstAttribute="leading" secondItem="zDT-CI-jAJ" secondAttribute="leading" constant="18" id="ZwN-Pq-0K9"/>
                             <constraint firstItem="Ed3-l4-0Sc" firstAttribute="top" secondItem="ORV-M7-XLP" secondAttribute="bottom" constant="8" id="nVQ-Cq-q4p"/>
@@ -57,6 +57,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="formattedNumericLabel" destination="ORV-M7-XLP" id="n83-rM-2TI"/>
+                <outlet property="numericTextField" destination="Ed3-l4-0Sc" id="dmT-TA-b3h"/>
+            </connections>
             <point key="canvasLocation" x="137.59999999999999" y="141.22938530734635"/>
         </tableViewCell>
     </objects>

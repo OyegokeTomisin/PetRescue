@@ -34,7 +34,7 @@
                             </containerView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="3JT-2u-Qhy">
                                 <rect key="frame" x="168" y="630" width="39" height="37"/>
-                                <color key="pageIndicatorTintColor" red="0.94901960780000005" green="0.76862745099999996" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="pageIndicatorTintColor" red="0.050980392156862744" green="0.031372549019607843" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="0.90588235289999997" green="0.28627450980000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </pageControl>
                         </subviews>
@@ -58,8 +58,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqU-AO-Pf1">
                                         <rect key="frame" x="0.0" y="0.0" width="83" height="33"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <state key="normal" title="Next">
-                                            <color key="titleColor" red="0.94901960780000005" green="0.76862745099999996" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="NEXT">
+                                            <color key="titleColor" red="0.90588235289999997" green="0.28627450980000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="nextButtonTapped:" destination="eqe-zO-MFC" eventType="touchUpInside" id="iAo-ou-0Tb"/>
@@ -78,6 +78,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="formPageControl" destination="3JT-2u-Qhy" id="MPO-Wb-Ffh"/>
+                        <outlet property="navigationBar" destination="c6A-xx-AOy" id="34t-EH-XtX"/>
                         <outlet property="nextButton" destination="hqU-AO-Pf1" id="y64-WQ-u67"/>
                     </connections>
                 </viewController>
@@ -93,9 +94,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="30" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="M4X-8C-DAp">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="30" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="M4X-8C-DAp">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.91372549020000005" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdoptionForm" id="6X9-NH-Xqr">
                                         <rect key="frame" x="0.0" y="30" width="375" height="44"/>

@@ -24,15 +24,15 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yp-9r-IKK">
                                 <rect key="frame" x="18" y="35" width="217" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tbw-YI-z3G">
                                 <rect key="frame" x="253" y="30" width="51" height="31"/>
                             </switch>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.91372549020000005" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="tbw-YI-z3G" firstAttribute="centerY" secondItem="EJO-uu-mdB" secondAttribute="centerY" id="69o-cV-q8n"/>
                             <constraint firstItem="tbw-YI-z3G" firstAttribute="leading" secondItem="3yp-9r-IKK" secondAttribute="trailing" constant="18" id="6lK-Po-IvF"/>
@@ -51,6 +51,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="yesNoLabel" destination="3yp-9r-IKK" id="mc8-01-u6O"/>
+            </connections>
             <point key="canvasLocation" x="137.59999999999999" y="146.62668665667167"/>
         </tableViewCell>
     </objects>
