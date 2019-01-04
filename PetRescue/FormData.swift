@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-public func parseJsonData() -> JSON? {
+public func parseFileData() -> JSON? {
     if let path = Bundle.main.path(forResource: "pet_adoption-1.json", ofType: "json") {
         if let data = try? Data(contentsOf: URL(fileURLWithPath: path)){
             let json = try? JSON(data: data)

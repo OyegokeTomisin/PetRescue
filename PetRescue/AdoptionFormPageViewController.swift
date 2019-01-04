@@ -24,11 +24,9 @@ class AdoptionFormPageViewController: UIPageViewController, UIPageViewController
         super.viewDidLoad()
     
         delegate = self
-        //dataSource = self
-        
-        formDelegate?.numberOfPages = pagesCount ?? 0
-        
-        guard let formData = parseJsonData() else { return }
+        dataSource = self
+    
+        guard let formData = parseFileData() else { return }
         let form = FormData(json: formData)
         if let number_of_pages = form.pages.array{
             pagesCount = number_of_pages.count

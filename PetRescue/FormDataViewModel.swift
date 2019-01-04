@@ -36,7 +36,7 @@ class FormDataViewModel: NSObject {
     }
     
     func loadTableData(){
-        guard let formData = parseJsonData() else { return }
+        guard let formData = parseFileData() else { return }
         
         let form = FormData(json: formData)
         let sections = form.pages[pageIndex]["sections"].arrayValue
