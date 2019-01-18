@@ -12,6 +12,7 @@ import SwiftyJSON
 class EmbeddedPhotoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var photo: UIImageView!
+    var cellItem: EmbeddedPhotoCellItem?
     
     override func awakeFromNib() {
         super.awakeFromNib()

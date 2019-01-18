@@ -19,6 +19,8 @@ class FormattedNumericTableViewCell: UITableViewCell, UITextFieldDelegate {
     var isMandatory: Bool?
     var unique_id:String?
     
+    var cellItem: FormattedNumericCellItem?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

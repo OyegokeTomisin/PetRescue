@@ -15,6 +15,8 @@ class DateTimeTableViewCell: UITableViewCell {
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var selectedDateLabel: UILabel!
     
+    var cellItem: DateTimeCellItem?
+    
     var dateOfBirth: String?{
         didSet{
             selectedDateLabel.text = dateOfBirth

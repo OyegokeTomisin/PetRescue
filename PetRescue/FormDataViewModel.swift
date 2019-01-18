@@ -20,6 +20,12 @@ enum FormItemViewModelType {
 
 protocol FormViewModelItem {
     var type: FormItemViewModelType { get }
+    var uniqueID: String { get }
+    var isHidden: Bool { get set }
+}
+
+protocol ApplyRule{
+    func applyRule(on target: [String], with hideAction: Bool)
 }
 
 class FormDataViewModel: NSObject {
@@ -39,116 +45,41 @@ class FormDataViewModel: NSObject {
             sectionTitles.append(section["label"].string)
             var Items = [FormViewModelItem]()
             for element in section["elements"].arrayValue{
-                if element["type"] == "embeddedphoto"{
-                    let cellItem = EmbeddedPhotoCellItem()
-                    cellItem.element = element
-                    Items.append(cellItem)
-                }
-                if element["type"] == "text"{
-                    let cellItem = TextCellItem()
-                    cellItem.element = element
-                    Items.append(cellItem)
-                }
-                if element["type"] == "yesno"{
-                    let cellItem = YesNoCellItem()
-                    cellItem.element = element
-                    Items.append(cellItem)
-                }
-                if element["type"] == "formattednumeric"{
-                    let cellItem = FormattedNumericCellItem()
-                    cellItem.element = element
-                    Items.append(cellItem)
-                }
-                if element["type"] == "datetime"{
-                    let cellItem = DateTimeCellItem()
-                    cellItem.element = element
-                    Items.append(cellItem)
+                if let elementType = element["type"].string{
+                    switch elementType{
+                    case "embeddedphoto":
+                        let cellItem = EmbeddedPhotoCellItem(element: element)
+                        Items.append(cellItem)
+                    case "text":
+                        let cellItem = TextCellItem(element: element)
+                        Items.append(cellItem)
+                    case "yesno":
+                        let cellItem = YesNoCellItem(element: element)
+                        Items.append(cellItem)
+                    case "formattednumeric":
+                        let cellItem = FormattedNumericCellItem(element: element)
+                        Items.append(cellItem)
+                    case "datetime":
+                        let cellItem = DateTimeCellItem(element: element)
+                        Items.append(cellItem)
+                    default:
+                        break
+                    }
                 }
             }
             formItems.append(Items)
             Items = [FormViewModelItem]()
         }
     }
-}
-
-extension FormDataViewModel: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return formItems[section].count
-    }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return formItems.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitles[section]
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let formCell = formItems[indexPath.section][indexPath.row]
-        
-        switch formCell.type {
-        case .embeddedPhoto:
-            if let embeddedPhoto = formCell as? EmbeddedPhotoCellItem, let cell = tableView.dequeueReusableCell(withIdentifier: "embeddedPhoto") as? EmbeddedPhotoTableViewCell{
-                cell.configureCell(with: embeddedPhoto.element)
-                return cell
-            }
-        case .text:
-            if let text = formCell as? TextCellItem, let cell = tableView.dequeueReusableCell(withIdentifier: "text") as? TextTableViewCell{
-                cell.configureCell(with: text.element)
-                return cell
-            }
-        case .formattednumeric:
-            if let formattedNumeric = formCell as? FormattedNumericCellItem, let cell = tableView.dequeueReusableCell(withIdentifier: "formattednumeric") as? FormattedNumericTableViewCell{
-                cell.configureCell(with: formattedNumeric.element)
-                return cell
-            }
-        case .yesno:
-            if let yesno = formCell as? YesNoCellItem, let cell = tableView.dequeueReusableCell(withIdentifier: "yesno") as? YesNoTableViewCell{
-                cell.configureCell(with: yesno.element)
-                return cell
-            }
-        case .datetime:
-            if let dateTime = formCell as? DateTimeCellItem, let cell = tableView.dequeueReusableCell(withIdentifier: "datetime") as? DateTimeTableViewCell{
-                cell.configureCell(with: dateTime.element)
-                return cell
+    func applyRule(on target: [String], with hideAction: Bool, completion: ()->()){
+        for items in formItems{
+            for var element in items {
+                if target.contains(element.uniqueID) {
+                    element.isHidden = hideAction
+                }
             }
         }
-        return UITableViewCell()
-    }
-}
-
-class TextCellItem:FormViewModelItem{
-    var element: JSON?
-    var type: FormItemViewModelType{
-        return .text
-    }
-}
-
-class FormattedNumericCellItem:FormViewModelItem{
-    var element: JSON?
-    var type: FormItemViewModelType{
-        return .formattednumeric
-    }
-}
-
-class DateTimeCellItem:FormViewModelItem{
-    var element: JSON?
-    var type: FormItemViewModelType{
-        return .datetime
-    }
-}
-
-class EmbeddedPhotoCellItem:FormViewModelItem{
-    var element: JSON?
-    var type: FormItemViewModelType{
-        return .embeddedPhoto
-    }
-}
-
-class YesNoCellItem:FormViewModelItem{
-    var element: JSON?
-    var type: FormItemViewModelType{
-        return .yesno
+        completion()
     }
 }

@@ -17,6 +17,7 @@ class TextTableViewCell: UITableViewCell, UITextFieldDelegate {
     var label: String? { didSet{ textCellLabel.text = label }}
     var isMandatory: Bool?
     var unique_id:String?
+    var cellItem: TextCellItem?
     
     override func awakeFromNib() {
         super.awakeFromNib()
