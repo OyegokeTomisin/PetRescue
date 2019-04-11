@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class TextTableViewCell: UITableViewCell, UITextFieldDelegate {
     
@@ -17,7 +16,13 @@ class TextTableViewCell: UITableViewCell, UITextFieldDelegate {
     var label: String? { didSet{ textCellLabel.text = label }}
     var isMandatory: Bool?
     var unique_id:String?
-    var cellItem: TextCellItem?
+    var element: Elements?{
+        didSet{
+            label = element?.label
+            isMandatory = element?.isMandatory
+            unique_id = element?.unique_id
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,13 +34,6 @@ class TextTableViewCell: UITableViewCell, UITextFieldDelegate {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
-    }
-    
-    func configureCell(with element: JSON?){
-        guard let element = element else { return }
-        label = element["label"].string
-        isMandatory = element["isMandatory"].bool
-        unique_id = element["unique_id"].string
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

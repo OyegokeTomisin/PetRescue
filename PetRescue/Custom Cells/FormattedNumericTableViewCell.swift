@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class FormattedNumericTableViewCell: UITableViewCell, UITextFieldDelegate {
 
@@ -19,7 +18,14 @@ class FormattedNumericTableViewCell: UITableViewCell, UITextFieldDelegate {
     var isMandatory: Bool?
     var unique_id:String?
     
-    var cellItem: FormattedNumericCellItem?
+    var element: Elements?{
+        didSet{
+            label = element?.label
+            formattedNumeric = element?.formattedNumeric
+            isMandatory = element?.isMandatory
+            unique_id = element?.unique_id
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,13 +37,5 @@ class FormattedNumericTableViewCell: UITableViewCell, UITextFieldDelegate {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-
-    func configureCell(with element: JSON?){
-        guard let element = element else { return }
-        label = element["label"].string
-        formattedNumeric = element["formattedNumeric"].string
-        isMandatory = element["isMandatory"].bool
-        unique_id = element["unique_id"].string
     }
 }

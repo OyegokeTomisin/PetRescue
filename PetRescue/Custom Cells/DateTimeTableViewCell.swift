@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class DateTimeTableViewCell: UITableViewCell {
 
@@ -15,7 +14,11 @@ class DateTimeTableViewCell: UITableViewCell {
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var selectedDateLabel: UILabel!
     
-    var cellItem: DateTimeCellItem?
+    var element: Elements?{
+        didSet{
+            dateTimeLabel.text = element?.label
+        }
+    }
     
     var dateOfBirth: String?{
         didSet{
@@ -33,11 +36,6 @@ class DateTimeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    func configureCell(with element: JSON?){
-        guard let element = element else { return }
-        dateTimeLabel.text = element["label"].string
     }
     
     @IBAction func selectDateAction(_ sender: UIDatePicker) {

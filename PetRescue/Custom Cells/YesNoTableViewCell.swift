@@ -7,13 +7,16 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class YesNoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var yesNoLabel: UILabel!
     
-    var cellItem: YesNoCellItem?
+    var element: Elements?{
+        didSet{
+            yesNoLabel.text = element?.label
+        }
+    }
     var ruleDelegate: ApplyRule?
     
     override func awakeFromNib() {
@@ -28,28 +31,24 @@ class YesNoTableViewCell: UITableViewCell {
     }
     
     @IBAction func yesNoSwitchControlTapped(_ sender: UISwitch) {
-        let hideCell = false
-        if !sender.isOn{
-            applyRules(with: !hideCell)
-        }else{
-            applyRules(with: hideCell)
+//        let hideCell = false
+//        if !sender.isOn{
+//           ruleDelegate?.applyRule(cellItem?.rules, with: true)
+//        }else{
+//
+//        }
+        if let rule = element?.rules{
+            ruleDelegate?.applyRule(rule, with: !sender.isOn)
         }
+        
     }
     
-    func applyRules(with hideAction: Bool){
-        guard let rules = cellItem?.rules else { return }
-        for rule in rules{
-            if let shouldShow = rule.action, shouldShow == "show"{
-                if let target = rule.targets{
-                    ruleDelegate?.applyRule(on: target, with: hideAction)
-                }
-            }
-        }
-    }
-    
-    func configureCell(with element: JSON?){
-        guard let element = element else { return }
-        yesNoLabel.text = element["label"].string
-    }
-    
+//    func applyRules(with hideAction: Bool){
+//        guard let rules = cellItem?.rules else { return }
+//        for rule in rules{
+//            if rule.action == "show"{
+//                ruleDelegate?.applyRule(on: rule.targets, with: hideAction)
+//            }
+//        }
+//    }
 }

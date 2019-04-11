@@ -7,12 +7,17 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class EmbeddedPhotoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var photo: UIImageView!
-    var cellItem: EmbeddedPhotoCellItem?
+    var element: Elements?{
+        didSet{
+            if let imageUrl = element?.file{
+                photo.downloadImage(from: imageUrl)
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,13 +28,6 @@ class EmbeddedPhotoTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    func configureCell(with element: JSON?){
-        guard let element = element else { return }
-        if let imageUrl = element["file"].string{
-            photo.downloadImage(from: imageUrl)
-        }
     }
 }
 
