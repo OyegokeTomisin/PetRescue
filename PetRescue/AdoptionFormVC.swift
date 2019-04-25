@@ -8,48 +8,57 @@
 
 import UIKit
 
-class AdoptionFormVC: UIViewController{
+class AdoptionFormVC: UICollectionViewController, UICollectionViewDelegateFlowLayout{
     
+    fileprivate let cellId = "cell"
     fileprivate var formData: AdoptionForm?
-    @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var collectionView: UICollectionView!
+    
+    init() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
+        layout.invalidateLayout()
+        super.init(collectionViewLayout: layout)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         formData = getFormData()
-        collectionView.delegate = self
-        collectionView.dataSource = self
         navigationItem.title = formData?.name
-        pageControl.numberOfPages = formData?.pages.count ?? 0
+        collectionView.isPagingEnabled = true
+        collectionView.backgroundColor = .white
+        collectionView.register(AdoptionFormCell.self, forCellWithReuseIdentifier: cellId)
     }
     
     fileprivate func getFormData() -> AdoptionForm? {
-        guard let path = Bundle.main.path(forResource: "pet_adoption1.json", ofType: "json") else { return nil }
+        guard let path = Bundle.main.path(forResource: "pet_adoption-1.json", ofType: "json") else { return nil }
         if let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe){
             let formData = try? JSONDecoder().decode(AdoptionForm.self, from: data)
-            return formData }
+            return formData
+        }
         return nil
     }
-}
-
-extension AdoptionFormVC: UICollectionViewDelegate, UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        pageControl.currentPage = indexPath.row
-    }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return formData?.pages.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AdoptionFormCell
         cell.page = formData?.pages[indexPath.row]
         return cell
     }
-}
-
-extension AdoptionFormVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: self.view.frame.size.width, height: 567)
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return formData?.pages.count ?? 0
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: collectionView.frame.width, height: collectionView.frame.height - 50)
+    }
+    
+    /*func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+     pageControl.currentPage = indexPath.row
+     }*/
 }

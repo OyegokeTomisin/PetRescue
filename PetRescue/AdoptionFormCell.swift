@@ -10,8 +10,6 @@ import UIKit
 
 class AdoptionFormCell: UICollectionViewCell {
     
-    @IBOutlet weak var formTable: UITableView!
-    
     var page: Pages?
     fileprivate  var ruleTargets = [[String]]()
     fileprivate let cells = [
@@ -21,10 +19,18 @@ class AdoptionFormCell: UICollectionViewCell {
         (name: "EmbeddedPhotoTableViewCell", id: "embeddedPhoto"),
         (name: "FormattedNumericTableViewCell", id: "formattednumeric") ]
     
+    fileprivate var formTable: UITableView! = {
+        let tab = UITableView()
+        tab.estimatedRowHeight = 100
+        return tab
+    }()
+    
     override func layoutSubviews() {
+        addSubview(formTable)
         formTable.delegate = self
         formTable.dataSource = self
         formTable.tableFooterView = UIView()
+        formTable.frame = self.contentView.frame
         cells.forEach({ formTable.register(UINib(nibName: $0.name, bundle: nil), forCellReuseIdentifier: $0.id)})
     }
 }
@@ -45,37 +51,40 @@ extension AdoptionFormCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return page?.sections[section].label
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return page?.sections.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let formElement = page?.sections[indexPath.section].elements[indexPath.row]{
+            
             switch formElement.type {
-            case .photo:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "embeddedPhoto") as? EmbeddedPhotoTableViewCell{
-                    cell.element = formElement
-                    return cell
-                }
             case .text:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "text") as? TextTableViewCell{
+                if let cell = tableView.dequeueReusableCell(withIdentifier: cells[0].id) as? TextTableViewCell{
                     cell.element = formElement
                     ruleTargets.forEach({ cell.isHidden = $0.contains(formElement.unique_id) })
                     return cell
                 }
-            case .formattednumeric:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "formattednumeric") as? FormattedNumericTableViewCell{
-                    cell.element = formElement
-                    return cell
-                }
             case .yesno:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "yesno") as? YesNoTableViewCell{
+                if let cell = tableView.dequeueReusableCell(withIdentifier: cells[1].id) as? YesNoTableViewCell{
                     cell.element = formElement
                     cell.ruleDelegate = self
                     return cell
                 }
             case .datetime:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "datetime") as? DateTimeTableViewCell{
+                if let cell = tableView.dequeueReusableCell(withIdentifier: cells[2].id) as? DateTimeTableViewCell{
+                    cell.element = formElement
+                    return cell
+                }
+            case .photo:
+                if let cell = tableView.dequeueReusableCell(withIdentifier: cells[3].id) as? EmbeddedPhotoTableViewCell{
+                    cell.element = formElement
+                    return cell
+                }
+                
+            case .formattednumeric:
+                if let cell = tableView.dequeueReusableCell(withIdentifier: cells[4].id) as? FormattedNumericTableViewCell{
                     cell.element = formElement
                     return cell
                 }

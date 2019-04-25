@@ -12,12 +12,12 @@ class YesNoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var yesNoLabel: UILabel!
     
+    var ruleDelegate: ApplyRule?
     var element: Elements?{
         didSet{
             yesNoLabel.text = element?.label
         }
     }
-    var ruleDelegate: ApplyRule?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,24 +31,8 @@ class YesNoTableViewCell: UITableViewCell {
     }
     
     @IBAction func yesNoSwitchControlTapped(_ sender: UISwitch) {
-//        let hideCell = false
-//        if !sender.isOn{
-//           ruleDelegate?.applyRule(cellItem?.rules, with: true)
-//        }else{
-//
-//        }
         if let rule = element?.rules{
             ruleDelegate?.applyRule(rule, with: !sender.isOn)
         }
-        
     }
-    
-//    func applyRules(with hideAction: Bool){
-//        guard let rules = cellItem?.rules else { return }
-//        for rule in rules{
-//            if rule.action == "show"{
-//                ruleDelegate?.applyRule(on: rule.targets, with: hideAction)
-//            }
-//        }
-//    }
 }
