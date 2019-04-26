@@ -97,8 +97,8 @@
 		EB6FEAAB21D9FC670086351E /* PetRescue */ = {
 			isa = PBXGroup;
 			children = (
-				EBE4AAB221DDDEF600C08B63 /* Model.swift */,
 				EB6FEAAC21D9FC670086351E /* AppDelegate.swift */,
+				EBE4AAB221DDDEF600C08B63 /* Model.swift */,
 				EB9B8DED225FA23500214FAB /* AdoptionFormVC.swift */,
 				EB9B8DEC225FA23500214FAB /* AdoptionFormCell.swift */,
 				EB2D0D042271877C006B34AF /* BaseViewController.swift */,

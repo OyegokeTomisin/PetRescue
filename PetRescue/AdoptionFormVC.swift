@@ -13,6 +13,8 @@ class AdoptionFormVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     fileprivate let cellId = "cell"
     fileprivate var formData: AdoptionForm?
     
+    fileprivate let bar = UIBarButtonItem(title: "Submit", style: .plain, target: self, action: #selector(submit))
+    
     init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -35,6 +37,10 @@ class AdoptionFormVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView.register(AdoptionFormCell.self, forCellWithReuseIdentifier: cellId)
     }
     
+    @objc func submit(){
+        
+    }
+    
     fileprivate func getFormData() -> AdoptionForm? {
         guard let path = Bundle.main.path(forResource: "pet_adoption-1.json", ofType: "json") else { return nil }
         if let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe){
@@ -45,7 +51,7 @@ class AdoptionFormVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AdoptionFormCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AdoptionFormCell
         cell.page = formData?.pages[indexPath.row]
         return cell
     }
@@ -58,7 +64,13 @@ class AdoptionFormVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         return .init(width: collectionView.frame.width, height: collectionView.frame.height - 50)
     }
     
-    /*func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-     pageControl.currentPage = indexPath.row
-     }*/
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let pages = formData?.pages{
+            if indexPath.row == (pages.count - 1){
+                navigationItem.rightBarButtonItem = bar
+            }else{
+                navigationItem.rightBarButtonItem = nil
+            }
+        }
+    }
 }

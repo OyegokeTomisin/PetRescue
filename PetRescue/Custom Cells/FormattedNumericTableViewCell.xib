@@ -15,15 +15,15 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="formattednumeric" rowHeight="90" id="KGk-i7-Jjw" customClass="FormattedNumericTableViewCell" customModule="PetRescue" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDT-CI-jAJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="90.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ed3-l4-0Sc">
-                                <rect key="frame" x="18" y="37.5" width="284" height="40"/>
+                                <rect key="frame" x="18" y="37" width="284" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="PmC-Ud-BhW"/>
                                 </constraints>
@@ -31,20 +31,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" enablesReturnKeyAutomatically="YES" textContentType="tel"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORV-M7-XLP">
-                                <rect key="frame" x="18" y="8.5" width="45" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORV-M7-XLP">
+                                <rect key="frame" x="18" y="8" width="284" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.91372549020000005" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ORV-M7-XLP" secondAttribute="trailing" constant="18" id="IFt-OR-eyC"/>
+                            <constraint firstAttribute="bottom" secondItem="Ed3-l4-0Sc" secondAttribute="bottom" constant="12.5" id="Jaj-wq-Rao"/>
                             <constraint firstItem="Ed3-l4-0Sc" firstAttribute="leading" secondItem="zDT-CI-jAJ" secondAttribute="leading" constant="18" id="ZwN-Pq-0K9"/>
                             <constraint firstItem="Ed3-l4-0Sc" firstAttribute="top" secondItem="ORV-M7-XLP" secondAttribute="bottom" constant="8" id="nVQ-Cq-q4p"/>
                             <constraint firstAttribute="trailing" secondItem="Ed3-l4-0Sc" secondAttribute="trailing" constant="18" id="uad-9C-3RM"/>
                             <constraint firstItem="ORV-M7-XLP" firstAttribute="leading" secondItem="zDT-CI-jAJ" secondAttribute="leading" constant="18" id="ucf-5s-k2J"/>
-                            <constraint firstAttribute="height" constant="90" id="vhz-gs-FfI"/>
                             <constraint firstItem="ORV-M7-XLP" firstAttribute="top" secondItem="zDT-CI-jAJ" secondAttribute="top" constant="8" id="yjY-Pk-Z0k"/>
                         </constraints>
                     </view>
