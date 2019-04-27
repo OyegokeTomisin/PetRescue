@@ -2,11 +2,6 @@
 
 **A native iOS application for pet adoption**
 
-## Discussion
-#### The following technolologies:
-*  *Swift*
-*  *SwiftyJSON*
-
 ## Objective Targets
 * #### Build a native iOS app
 * #### Create a dynamic form from contents of  attached JSON file 
