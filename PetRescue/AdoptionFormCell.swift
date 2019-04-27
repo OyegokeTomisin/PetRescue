@@ -42,18 +42,16 @@ class AdoptionFormCell: UICollectionViewCell {
     
     @objc func submitButtonTapped(){
         shouldValidate = true
-        nonValidElements = [Elements]()
-        print(nonValidElements.count)
         formTable.reloadData()
-        print("submit oooo")
-        
+        nonValidElements = [Elements]()
+        //print(nonValidElements.count)
     }
 }
 
 extension AdoptionFormCell: ApplyRule, ValidateForm {
     func isValidElement(_ item: Elements) {
         nonValidElements.append(item)
-        formValidator?.checkItems(for: item)
+        formValidator?.checkItems(for: nonValidElements.last!)
     }
     
     func applyRule(_ rule: [Rules], with hideAction: Bool) {

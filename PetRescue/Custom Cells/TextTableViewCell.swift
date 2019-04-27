@@ -31,8 +31,10 @@ class TextTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func validate(){
-        if (textField.text == nil || textField.text?.isEmpty ?? true) && element?.isMandatory ?? true {
-            validationDelegate?.isValidElement(element!)
+        if element?.isMandatory ?? true{
+            if (textField.text == nil || textField.text?.isEmpty ?? true){
+                validationDelegate?.isValidElement(element!)
+            }
         }
     }
     
