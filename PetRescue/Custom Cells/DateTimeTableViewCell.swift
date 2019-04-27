@@ -9,15 +9,16 @@
 import UIKit
 
 class DateTimeTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var selectedDateLabel: UILabel!
     
+    var validationDelegate: ValidateForm?{
+        didSet{ validate() }
+    }
     var element: Elements?{
-        didSet{
-            dateTimeLabel.text = element?.label
-        }
+        didSet{ dateTimeLabel.text = element?.label }
     }
     
     var dateOfBirth: String?{
@@ -26,16 +27,20 @@ class DateTimeTableViewCell: UITableViewCell {
             selectedDateLabel.isHidden = false
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         selectedDateLabel.isHidden = true
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    func validate(){
+        if dateOfBirth == nil && element?.isMandatory ?? true {
+            validationDelegate?.isValidElement(element!)
+        }
     }
     
     @IBAction func selectDateAction(_ sender: UIDatePicker) {

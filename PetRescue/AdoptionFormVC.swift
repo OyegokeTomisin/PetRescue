@@ -8,37 +8,21 @@
 
 import UIKit
 
-class AdoptionFormVC: UICollectionViewController, UICollectionViewDelegateFlowLayout{
+class AdoptionFormVC: UIViewController{
+    
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     fileprivate let cellId = "cell"
     fileprivate var formData: AdoptionForm?
     
-    fileprivate let bar = UIBarButtonItem(title: "Submit", style: .plain, target: self, action: #selector(submit))
-    
-    init() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
-        layout.invalidateLayout()
-        super.init(collectionViewLayout: layout)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         formData = getFormData()
+        collectionView.delegate = self
+        collectionView.dataSource = self
         navigationItem.title = formData?.name
-        collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = .white
         collectionView.register(AdoptionFormCell.self, forCellWithReuseIdentifier: cellId)
-    }
-    
-    @objc func submit(){
-        
     }
     
     fileprivate func getFormData() -> AdoptionForm? {
@@ -50,23 +34,50 @@ class AdoptionFormVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         return nil
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AdoptionFormCell
-        cell.page = formData?.pages[indexPath.row]
-        return cell
+    @objc func submitButtonTapped(_ sender: UIBarButtonItem ){
+        NotificationCenter.default.post(name: NSNotification.Name("submit"), object: nil)
+    
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func alert(title: String, errorMessage: String?) {
+        let alertController = UIAlertController(title: title, message: errorMessage , preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension AdoptionFormVC: FormValidator{
+    func submitForm() {
+        alert(title: "Yaay!!", errorMessage: "Your form can now be submitted")
+    }
+    
+    func checkItems(for cell: Elements) {        
+        alert(title: "Plesase check this field", errorMessage: cell.label)
+    }
+}
+
+extension AdoptionFormVC :UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return formData?.pages.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: collectionView.frame.width, height: collectionView.frame.height - 50)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AdoptionFormCell
+        cell.page = formData?.pages[indexPath.row]
+        cell.formValidator = self
+        return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        pageControl.currentPage = indexPath.item
         if let pages = formData?.pages{
             if indexPath.row == (pages.count - 1){
+                let bar = UIBarButtonItem(title: "Submit", style: .plain, target: self, action: #selector(submitButtonTapped(_:)))
                 navigationItem.rightBarButtonItem = bar
             }else{
                 navigationItem.rightBarButtonItem = nil

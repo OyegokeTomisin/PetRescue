@@ -23,21 +23,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="438" height="213.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wy-vR-xEx">
-                                <rect key="frame" x="18" y="18" width="36" height="39.5"/>
+                                <rect key="frame" x="18" y="18" width="36" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxr-gt-1yX">
-                                <rect key="frame" x="371.5" y="18" width="48.5" height="39.5"/>
+                                <rect key="frame" x="371.5" y="18" width="48.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                 <color key="textColor" red="0.90588235289999997" green="0.28627450980000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jIK-SL-iX1">
-                                <rect key="frame" x="8" y="75.5" width="422" height="120"/>
+                                <rect key="frame" x="8" y="53" width="422" height="142.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="caC-A4-HDB"/>
+                                    <constraint firstAttribute="height" constant="142.5" id="wXu-ju-G7e"/>
                                 </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="568282952.71476495">
                                     <!--2019-01-04 08:22:32 +0000-->

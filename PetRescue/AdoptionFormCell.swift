@@ -11,7 +11,12 @@ import UIKit
 class AdoptionFormCell: UICollectionViewCell {
     
     var page: Pages?
+    var formValidator: FormValidator?
     fileprivate  var ruleTargets = [[String]]()
+    fileprivate  var nonValidElements = [Elements]()
+    
+    var shouldValidate = false
+
     fileprivate let cells = [
         (name: "TextTableViewCell", id: "text"),
         (name: "YesNoTableViewCell", id: "yesno"),
@@ -32,10 +37,25 @@ class AdoptionFormCell: UICollectionViewCell {
         formTable.tableFooterView = UIView()
         formTable.frame = self.contentView.frame
         cells.forEach({ formTable.register(UINib(nibName: $0.name, bundle: nil), forCellReuseIdentifier: $0.id)})
+        NotificationCenter.default.addObserver(self, selector: #selector(submitButtonTapped), name: NSNotification.Name("submit"), object: nil)
+    }
+    
+    @objc func submitButtonTapped(){
+        shouldValidate = true
+        nonValidElements = [Elements]()
+        print(nonValidElements.count)
+        formTable.reloadData()
+        print("submit oooo")
+        
     }
 }
 
-extension AdoptionFormCell: ApplyRule {
+extension AdoptionFormCell: ApplyRule, ValidateForm {
+    func isValidElement(_ item: Elements) {
+        nonValidElements.append(item)
+        formValidator?.checkItems(for: item)
+    }
+    
     func applyRule(_ rule: [Rules], with hideAction: Bool) {
         hideAction ? rule.forEach({ (ruleTargets.append($0.targets)) }) : (ruleTargets = [[String]]())
         formTable.reloadData()
@@ -63,6 +83,7 @@ extension AdoptionFormCell: UITableViewDelegate, UITableViewDataSource {
             case .text:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: cells[0].id) as? TextTableViewCell{
                     cell.element = formElement
+                    shouldValidate ? (cell.validationDelegate = self) : nil
                     ruleTargets.forEach({ cell.isHidden = $0.contains(formElement.unique_id) })
                     return cell
                 }
@@ -75,6 +96,7 @@ extension AdoptionFormCell: UITableViewDelegate, UITableViewDataSource {
             case .datetime:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: cells[2].id) as? DateTimeTableViewCell{
                     cell.element = formElement
+                    shouldValidate ? (cell.validationDelegate = self) : nil
                     return cell
                 }
             case .photo:
@@ -82,10 +104,10 @@ extension AdoptionFormCell: UITableViewDelegate, UITableViewDataSource {
                     cell.element = formElement
                     return cell
                 }
-                
             case .formattednumeric:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: cells[4].id) as? FormattedNumericTableViewCell{
                     cell.element = formElement
+                    shouldValidate ? (cell.validationDelegate = self) : nil
                     return cell
                 }
             }

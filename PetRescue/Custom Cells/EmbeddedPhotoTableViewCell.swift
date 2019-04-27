@@ -11,6 +11,7 @@ import UIKit
 class EmbeddedPhotoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var photo: UIImageView!
+    
     var element: Elements?{
         didSet{
             if let imageUrl = element?.file{
@@ -21,13 +22,10 @@ class EmbeddedPhotoTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 }
 

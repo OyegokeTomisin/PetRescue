@@ -9,25 +9,20 @@
 import UIKit
 
 class YesNoTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var yesNoLabel: UILabel!
     
     var ruleDelegate: ApplyRule?
     var element: Elements?{
-        didSet{
-            yesNoLabel.text = element?.label
-        }
+        didSet{ yesNoLabel.text = element?.label }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     @IBAction func yesNoSwitchControlTapped(_ sender: UISwitch) {

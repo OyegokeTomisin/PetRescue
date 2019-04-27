@@ -13,27 +13,27 @@ class TextTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textCellLabel: UILabel!
     
-    var label: String? { didSet{ textCellLabel.text = label }}
-    var isMandatory: Bool?
-    var unique_id:String?
+    var validationDelegate: ValidateForm?{
+        didSet{ validate() }
+    }
     var element: Elements?{
-        didSet{
-            label = element?.label
-            isMandatory = element?.isMandatory
-            unique_id = element?.unique_id
-        }
+        didSet{ textCellLabel.text = element?.label }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         textField.delegate = self
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+    }
+    
+    func validate(){
+        if (textField.text == nil || textField.text?.isEmpty ?? true) && element?.isMandatory ?? true {
+            validationDelegate?.isValidElement(element!)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -12,6 +12,15 @@ protocol ApplyRule{
     func applyRule(_ rule: [Rules], with hideAction: Bool)
 }
 
+protocol ValidateForm{
+    func isValidElement(_ item: Elements)
+}
+
+protocol FormValidator {
+    func checkItems(for items: Elements)
+    func submitForm()
+}
+
 enum Keyboard: String, Decodable{
     case numeric = "numeric"
 }
