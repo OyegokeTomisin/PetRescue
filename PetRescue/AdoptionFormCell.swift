@@ -11,17 +11,15 @@ import UIKit
 class AdoptionFormCell: UICollectionViewCell {
     
     var page: Pages?
-    var formValidator: FormValidator?
-    fileprivate  var ruleTargets = [[String]]()
-    fileprivate  var nonValidElements = [Elements]()
-    
     var shouldValidate = false
-
+    var viewModel: FormViewModel?
+    var formValidator: FormValidator?
+    
     fileprivate let cells = [
         (name: "TextTableViewCell", id: "text"),
         (name: "YesNoTableViewCell", id: "yesno"),
         (name: "DateTimeTableViewCell", id: "datetime"),
-        (name: "EmbeddedPhotoTableViewCell", id: "embeddedPhoto"),
+        (name: "EmbeddedPhotoTableViewCell", id: "embeddedphoto"),
         (name: "FormattedNumericTableViewCell", id: "formattednumeric") ]
     
     fileprivate var formTable: UITableView! = {
@@ -43,19 +41,17 @@ class AdoptionFormCell: UICollectionViewCell {
     @objc func submitButtonTapped(){
         shouldValidate = true
         formTable.reloadData()
-        nonValidElements = [Elements]()
-        //print(nonValidElements.count)
     }
 }
 
 extension AdoptionFormCell: ApplyRule, ValidateForm {
     func isValidElement(_ item: Elements) {
-        nonValidElements.append(item)
-        formValidator?.checkItems(for: nonValidElements.last!)
+//        viewModel?.checkItems(for: item)
+//        viewModel?.nonValidElements?.insert(item.unique_id)
     }
     
     func applyRule(_ rule: [Rules], with hideAction: Bool) {
-        hideAction ? rule.forEach({ (ruleTargets.append($0.targets)) }) : (ruleTargets = [[String]]())
+        hideAction ? rule.forEach({ (viewModel?.ruleTargets.append($0.targets)) }) : (viewModel?.ruleTargets = [[String]]())
         formTable.reloadData()
     }
 }
@@ -76,39 +72,12 @@ extension AdoptionFormCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let formElement = page?.sections[indexPath.section].elements[indexPath.row]{
-            
-            switch formElement.type {
-            case .text:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: cells[0].id) as? TextTableViewCell{
-                    cell.element = formElement
-                    shouldValidate ? (cell.validationDelegate = self) : nil
-                    ruleTargets.forEach({ cell.isHidden = $0.contains(formElement.unique_id) })
-                    return cell
-                }
-            case .yesno:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: cells[1].id) as? YesNoTableViewCell{
-                    cell.element = formElement
-                    cell.ruleDelegate = self
-                    return cell
-                }
-            case .datetime:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: cells[2].id) as? DateTimeTableViewCell{
-                    cell.element = formElement
-                    shouldValidate ? (cell.validationDelegate = self) : nil
-                    return cell
-                }
-            case .photo:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: cells[3].id) as? EmbeddedPhotoTableViewCell{
-                    cell.element = formElement
-                    return cell
-                }
-            case .formattednumeric:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: cells[4].id) as? FormattedNumericTableViewCell{
-                    cell.element = formElement
-                    shouldValidate ? (cell.validationDelegate = self) : nil
-                    return cell
-                }
-            }
+            var cell = tableView.dequeueReusableCell(withIdentifier: formElement.type.id, for: indexPath) as! AdoptionFormElement
+            cell.configure(with: formElement)
+            viewModel?.ruleTargets.forEach({ cell.hideElement($0.contains(formElement.unique_id))})
+            shouldValidate ? (cell.validationDelegate = self) : nil
+            cell.ruleDelegate = self
+            return cell as! UITableViewCell
         }
         return UITableViewCell()
     }

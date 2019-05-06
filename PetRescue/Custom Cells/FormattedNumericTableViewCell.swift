@@ -8,13 +8,14 @@
 
 import UIKit
 
-class FormattedNumericTableViewCell: UITableViewCell, UITextFieldDelegate {
-
+class FormattedNumericTableViewCell: UITableViewCell, UITextFieldDelegate, AdoptionFormElement {
+    
     @IBOutlet weak var formattedNumericLabel: UILabel!
     @IBOutlet weak var numericTextField: UITextField!
     
+    var ruleDelegate: ApplyRule?
     var validationDelegate: ValidateForm?{
-        didSet{ validate() }
+        didSet{ validateElement() }
     }
     var element: Elements?{
         didSet{ formattedNumericLabel.text = element?.label }
@@ -30,7 +31,11 @@ class FormattedNumericTableViewCell: UITableViewCell, UITextFieldDelegate {
         super.setSelected(selected, animated: animated)
     }
     
-    func validate(){
+    func configure(with element: Elements) {
+        self.element = element
+    }
+    
+    func validateElement(){
         if (numericTextField.text == nil || numericTextField.text?.isEmpty ?? true) && element?.isMandatory ?? true {
             validationDelegate?.isValidElement(element!)
         }

@@ -8,19 +8,19 @@
 
 import UIKit
 
-class DateTimeTableViewCell: UITableViewCell {
+class DateTimeTableViewCell: UITableViewCell, AdoptionFormElement {
     
-    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var selectedDateLabel: UILabel!
     
+    var ruleDelegate: ApplyRule?
     var validationDelegate: ValidateForm?{
-        didSet{ validate() }
+        didSet{ validateElement() }
     }
     var element: Elements?{
         didSet{ dateTimeLabel.text = element?.label }
     }
-    
     var dateOfBirth: String?{
         didSet{
             selectedDateLabel.text = dateOfBirth
@@ -37,7 +37,11 @@ class DateTimeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func validate(){
+    func configure(with element: Elements) {
+        self.element = element
+    }
+    
+    func validateElement(){
         if dateOfBirth == nil && element?.isMandatory ?? true {
             validationDelegate?.isValidElement(element!)
         }

@@ -8,10 +8,11 @@
 
 import UIKit
 
-class YesNoTableViewCell: UITableViewCell {
+class YesNoTableViewCell: UITableViewCell, AdoptionFormElement {
     
     @IBOutlet weak var yesNoLabel: UILabel!
     
+    var validationDelegate: ValidateForm?
     var ruleDelegate: ApplyRule?
     var element: Elements?{
         didSet{ yesNoLabel.text = element?.label }
@@ -23,6 +24,10 @@ class YesNoTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func configure(with element: Elements) {
+        self.element = element
     }
     
     @IBAction func yesNoSwitchControlTapped(_ sender: UISwitch) {

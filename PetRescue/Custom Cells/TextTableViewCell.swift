@@ -8,13 +8,14 @@
 
 import UIKit
 
-class TextTableViewCell: UITableViewCell, UITextFieldDelegate {
+class TextTableViewCell: UITableViewCell, UITextFieldDelegate, AdoptionFormElement {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textCellLabel: UILabel!
     
+    var ruleDelegate: ApplyRule?
     var validationDelegate: ValidateForm?{
-        didSet{ validate() }
+        didSet{ validateElement() }
     }
     var element: Elements?{
         didSet{ textCellLabel.text = element?.label }
@@ -27,10 +28,17 @@ class TextTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
     }
     
-    func validate(){
+    func configure(with element: Elements) {
+        self.element = element
+    }
+    
+    func hideElement(_ hideAction: Bool) {
+        self.isHidden = hideAction
+    }
+    
+    func validateElement(){
         if element?.isMandatory ?? true{
             if (textField.text == nil || textField.text?.isEmpty ?? true){
                 validationDelegate?.isValidElement(element!)

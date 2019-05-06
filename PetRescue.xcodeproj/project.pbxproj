@@ -25,6 +25,7 @@
 		EB9B8DEF225FA23500214FAB /* AdoptionFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9B8DED225FA23500214FAB /* AdoptionFormVC.swift */; };
 		EBE4AAB321DDDEF600C08B63 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE4AAB221DDDEF600C08B63 /* Model.swift */; };
 		EBE4AAB721DDE19800C08B63 /* pet_adoption-1.json.json in Resources */ = {isa = PBXBuildFile; fileRef = EBE4AAB621DDE19800C08B63 /* pet_adoption-1.json.json */; };
+		EBEAE32D227762170002BC38 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEAE32C227762170002BC38 /* FormViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		EB9B8DED225FA23500214FAB /* AdoptionFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptionFormVC.swift; sourceTree = "<group>"; };
 		EBE4AAB221DDDEF600C08B63 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		EBE4AAB621DDE19800C08B63 /* pet_adoption-1.json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "pet_adoption-1.json.json"; sourceTree = "<group>"; };
+		EBEAE32C227762170002BC38 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				EBE4AAB221DDDEF600C08B63 /* Model.swift */,
+				EBEAE32C227762170002BC38 /* FormViewModel.swift */,
 				EB344B2722744C4700604FD9 /* Main.storyboard */,
 				EB6FEAAC21D9FC670086351E /* AppDelegate.swift */,
 				EB9B8DED225FA23500214FAB /* AdoptionFormVC.swift */,
@@ -196,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBEAE32D227762170002BC38 /* FormViewModel.swift in Sources */,
 				EB37485C21DB5D7E005055A5 /* TextTableViewCell.swift in Sources */,
 				EB37486621DB5DC2005055A5 /* FormattedNumericTableViewCell.swift in Sources */,
 				EBE4AAB321DDDEF600C08B63 /* Model.swift in Sources */,

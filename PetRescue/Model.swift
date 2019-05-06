@@ -8,6 +8,19 @@
 
 import Foundation
 
+protocol AdoptionFormElement{
+    var ruleDelegate: ApplyRule? { get set }
+    var validationDelegate: ValidateForm? { get set }
+    func validateElement()
+    func hideElement(_ action: Bool)
+    func configure(with element: Elements)
+}
+
+extension AdoptionFormElement{
+    func validateElement(){ }
+    func hideElement(_ action: Bool){ }
+}
+
 protocol ApplyRule{
     func applyRule(_ rule: [Rules], with hideAction: Bool)
 }
@@ -18,7 +31,7 @@ protocol ValidateForm{
 
 protocol FormValidator {
     func checkItems(for items: Elements)
-    func submitForm()
+    //func submitForm()
 }
 
 enum Keyboard: String, Decodable{
@@ -31,6 +44,10 @@ enum Type: String, Decodable{
     case yesno = "yesno"
     case formattednumeric = "formattednumeric"
     case datetime = "datetime"
+    
+    var id: String{
+        return self.rawValue
+    }
 }
 
 struct AdoptionForm: Decodable{

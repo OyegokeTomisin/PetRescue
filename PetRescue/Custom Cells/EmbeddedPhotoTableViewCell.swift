@@ -8,24 +8,26 @@
 
 import UIKit
 
-class EmbeddedPhotoTableViewCell: UITableViewCell {
+class EmbeddedPhotoTableViewCell: UITableViewCell, AdoptionFormElement {
     
     @IBOutlet weak var photo: UIImageView!
     
+    var ruleDelegate: ApplyRule?
+    var validationDelegate: ValidateForm?
     var element: Elements?{
-        didSet{
-            if let imageUrl = element?.file{
-                photo.downloadImage(from: imageUrl)
-            }
-        }
+        didSet{ if let imageUrl = element?.file{ photo.downloadImage(from: imageUrl) } }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func configure(with element: Elements) {
+        self.element = element
     }
 }
 
